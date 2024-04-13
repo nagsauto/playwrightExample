@@ -1,25 +1,26 @@
 import { test, expect } from '@playwright/test';
 
 test("Handling drop-downs with the select tag available", async ({ page }) => {
-    // Arrange:
+   
+    // Navigate to the webpage containing the drop-down.
     await page.goto("https://www.leafground.com/select.xhtml");
 
-    // Act:
+    
+    // Locate the drop-down element using its CSS class.
     const selectDropdown = page.locator(".ui-selectonemenu").first();
 
-    // Selecting an option by label
+    // Select an option by label.
     await selectDropdown.selectOption("Selenium");
 
-    // Selecting an option by value
+    // Select an option by value.
     await selectDropdown.selectOption("Playwright");
 
-    // Selecting an option by index
+    // Select an option by index.
     await selectDropdown.selectOption({ index: 4 });
 
-    // Assert:
+   
+    // Check that the selected value is 'Cypress'.
     await expect(selectDropdown).toHaveValue('Cypress');
-
-
 });
 
 
